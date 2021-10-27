@@ -1,5 +1,4 @@
 ## Integrantes do Grupo
----
 
 Alexander Thomas Mol Holmquist
 
@@ -10,7 +9,6 @@ Fernando Tonucci de Cerqueira Oliveira
 Leonel Mota
 
 ## Tema
----
 
 **Plataforma para registar e gerenciar eventos**. Inicialmente estes eventos
 podem ser de qualquer tipo. Exemplos:
@@ -28,7 +26,6 @@ eventos em uma área geográfica, ou criar um meio de comunicação entre pessoa
 que se interesse pelo mesmo tipo de evento.
 
 ## Tecnologias
----
 
 ### Frontend
 
