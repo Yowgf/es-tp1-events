@@ -16,14 +16,14 @@ podem ser de qualquer tipo. Exemplos:
 - Fui assaltado
 - Poste que caiu
 - Choveu
-- Passo um um tornado
+- Passou um tornado
 - Almocei
 
 A ideia inicial é bem genérica. Isso é intencional. O objetivo é implementarmos
 primeiro um bom fundamento. Posteriormente, é possível adicionar qualquer
 funcionalidade que considerarmos interessante, como visualizar a densidade de
 eventos em uma área geográfica, ou criar um meio de comunicação entre pessoas
-que se interesse pelo mesmo tipo de evento.
+que se interessem pelo mesmo tipo de evento.
 
 ## Tecnologias
 
