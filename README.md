@@ -30,6 +30,7 @@ que se interessem pelo mesmo tipo de evento.
 ### Frontend
 
 [React](https://reactjs.org/)
+[Express](https://expressjs.com/)
 
 ### Backend
 

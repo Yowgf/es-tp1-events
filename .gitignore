@@ -131,3 +131,6 @@ dmypy.json
 # Emacs
 *#
 *~
+
+# Temporary logs for the servers
+temp-logs
