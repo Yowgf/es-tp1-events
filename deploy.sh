@@ -3,17 +3,21 @@
 # This script deploys all servers we have
 ################################################################################
 
-serverPort=8000
-clientDir=client
-serverDir=server
+set -e
+
+apiServerPort=8000
+frontendDir=frontend
+apiServerDir=api-server
 tempLogPath=temp-log
 
 [ -d "${tempLogPath}" ] || mkdir "${tempLogPath}"
 
-# Spin client
-npm run --prefix "${clientDir}" dev > "${tempLogPath}"/client.log 2>&1 &
+# Spin frontend -- port 3000
+# then -> Spin BFF (proxy) -- port 3001
+npm run --prefix "${frontendDir}" start > "${tempLogPath}"/frontend.log 2>&1 &
+npm run --prefix "${frontendDir}" server > "${tempLogPath}"/bff.log 2>&1 &
 
-# Spin server
+# Spin apiServer
 python3 -m venv venv
 . venv/bin/activate
-FLASK_APP="${serverDir}" flask run --port "${serverPort}" > "${tempLogPath}"/server.log 2>&1 &
+FLASK_APP="${apiServerDir}" flask run --port "${apiServerPort}" > "${tempLogPath}"/apiServer.log 2>&1 &
