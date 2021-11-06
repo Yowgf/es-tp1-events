@@ -7,6 +7,7 @@ router.get(EVENT_ROOT_PATH, handler.getEvent)
 router.post(EVENT_ROOT_PATH + "list/*", handler.postEvent)
 
 router.use((err, req, res, next) => {
+    // TODO: improve logging -aholmquit 2021-11-05
     console.log(err)
 })
 
