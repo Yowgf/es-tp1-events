@@ -32,9 +32,8 @@ class apiServerClient {
     }
 
     async getEvent() {
-        console.log("Getting event...")
         const endpoint = '/event/'
-        return this.get(endpoint)
+        return await this.get(endpoint)
     }
 
     async postEvent(req) {

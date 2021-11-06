@@ -16,9 +16,34 @@ const useEvent = () => {
 		}
 	}
 
+	// TODO: the implementation below is just a prototype
 	const getEvent = async () => {
 		try {
-			return await expressClient.getEvent().then(res => res.data)
+			var res = await expressClient.getEvent().then(res => res.data)
+			var listOfEvents = res.events_list
+			var listEventsDiv = document.getElementsByClassName("list-events")[0]
+			var table = listEventsDiv.appendChild(document.createElement("table"))
+
+			// Create header of table
+			var headerRow = document.createElement("tr")
+			Object.keys(listOfEvents[Object.keys(listOfEvents)[0]]).forEach(key => {
+				var header = document.createElement("td")
+				header.innerText = key
+				headerRow.appendChild(header)
+			})
+			table.appendChild(headerRow)
+
+			// Now the rest of the rows
+			Object.keys(listOfEvents).forEach(key => {
+				var val = listOfEvents[key]
+				var newRow = document.createElement("tr")
+				Object.keys(val).forEach(key => {
+					var newTd = document.createElement("td")
+					newTd.innerText = val[key]
+					newRow.appendChild(newTd)
+				})
+				table.appendChild(newRow)
+			})
 		} catch(e) {
 			// TODO: should instead use lodash to log message -- aholmquist 2021-10-31
 			console.log("Error when getting event")
@@ -44,7 +69,7 @@ const useEvent = () => {
 
 const App = () => {
 	// Event API hooks
-	const { expressClient, postEvent } = useEvent()
+	const { expressClient, getEvent, postEvent } = useEvent()
 
 	// Form hooks
 	const {
@@ -59,6 +84,7 @@ const App = () => {
 	const onSubmit = async eventDescription => {
 		console.log(`Requesting submission with '${eventDescription}'`)
 		await postEvent(eventDescription)
+		document.getElementsByClassName("list-events")[0].innerText = eventDescription.eventDescription
 	}
 
 	return (
@@ -71,7 +97,7 @@ const App = () => {
 						className="register-event"
 						onSubmit={handleSubmit(onSubmit)}
 					>
-						<input className="event-description" {...register("eventDescription")}/>
+						<input className="event-description" {...register("eventDescription")}/>  
 						<Button
 							className="register-button"
 							size="small"
@@ -80,8 +106,18 @@ const App = () => {
 							type="submit"
 						>
 							Register
-						</Button>      
-					</form>
+						</Button>  
+					</form>   
+					<Button
+						className="list-button"
+						size="small"
+						variant="contained"
+						color="primary"
+						type="button"
+						onClick={getEvent}
+					>
+						List
+					</Button>  
 				</div>
 				<div className="list-events">
 				</div>
