@@ -40,7 +40,6 @@ que se interessem pelo mesmo tipo de evento.
 
 [PostgreSQL](https://www.postgresql.org/)
 
-
 ## Sprint Initial Backlog (Nov 12 to Jan 12)
 
 ### Tarefas fundamentais
@@ -129,3 +128,30 @@ ajudemos durante todo o processo de desenvolvimento, com reuniões semanais ou
 quando houver necessidade. Temos vários canais de comunicação de conhecimento do
 time. Também está disponível um quadro Scrum na ferramenta Trello [neste
 link](https://trello.com/b/hzcN7NV4/sprint-10).
+
+## Rodando localmente
+
+Essa aplicação pode ser executada localmente. É necessário que estejam
+instalados _node.js_, _npm_, e comandos básicos que geralmente vêm integrados em
+sistemas Linux. Com tais ferramentas corretamente dispostas, digite
+
+```shell
+npm install
+```
+
+Desta forma, todas as dependências do projeto devem ser instaladas no diretório
+*node_modules*. Então, para realizar o deploy de todas as aplicações, basta
+rodar o script _deploy.sh_:
+
+```shell
+./deploy.sh
+```
+
+Este script deve iniciar três servidores, nas portas 3000, 3001 e 8000. É fácil
+ver se eles estão em pé utilizando o script *check_servers.sh*.
+
+```shell
+./check_servers.sh
+```
+
+Para reiniciar os servidores, pode-se executar `restart.sh`.

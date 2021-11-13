@@ -31,7 +31,7 @@ class ExpressClient {
 
     async getEvent(config) {
         const url = "/event"
-        return this.instance.get(url, config)
+        return this.get(url, config)
     }
 
     async postEvent(data, config) {
