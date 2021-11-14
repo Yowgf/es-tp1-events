@@ -1,9 +1,3 @@
-.header {
-    width: 100%;
-    height: 50px;
-    background-color: black;
-}
-
 .register-event {
     display: flex;
     flex-direction: column;
