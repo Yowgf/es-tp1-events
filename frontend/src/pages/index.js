@@ -1,5 +1,7 @@
-import App from './App'
+import { default as Home } from './Home'
+import { default as Register } from './Register'
 
 export {
-    App
+    Home,
+    Register
 }

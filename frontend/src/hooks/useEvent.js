@@ -1,4 +1,4 @@
-import { default as ExpressClient } from '../../../clients/express'
+import { default as ExpressClient } from '../clients/express'
 
 const useEvent = () => {
 	const expressClient = new ExpressClient()
@@ -14,21 +14,26 @@ const useEvent = () => {
 	// TODO: the implementation below is just a prototype
 	const getEvent = async () => {
 		try {
+			var listEventsDiv = document.getElementById("list-events")
+			// First clean the element
+			listEventsDiv.innerHTML = ""
+
+			// Then, let's build the table from the server response
 			var res = await expressClient.getEvent().then(res => res.data)
 			var listOfEvents = res.events_list
-			var listEventsDiv = document.getElementsByClassName("list-events")[0]
 			var table = listEventsDiv.appendChild(document.createElement("table"))
 
 			// Create header of table
-			var headerRow = document.createElement("tr")
+			var headerThead = table.appendChild(document.createElement("thead"))
+			var headerRow = headerThead.appendChild(document.createElement("tr"))
 			Object.keys(listOfEvents[Object.keys(listOfEvents)[0]]).forEach(key => {
-				var header = document.createElement("td")
+				var header = document.createElement("th")
 				header.innerText = key
 				headerRow.appendChild(header)
 			})
-			table.appendChild(headerRow)
 
-			// Now the rest of the rows
+			// Now the body
+			var tableBody = table.appendChild(document.createElement("tbody"))
 			Object.keys(listOfEvents).forEach(key => {
 				var val = listOfEvents[key]
 				var newRow = document.createElement("tr")
@@ -37,7 +42,7 @@ const useEvent = () => {
 					newTd.innerText = val[key]
 					newRow.appendChild(newTd)
 				})
-				table.appendChild(newRow)
+				tableBody.appendChild(newRow)
 			})
 		} catch(e) {
 			// TODO: should instead use lodash to log message -- aholmquist 2021-10-31
