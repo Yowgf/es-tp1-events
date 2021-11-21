@@ -1,19 +1,21 @@
 import { Button } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { Fragment } from 'react'
+import { useParams } from 'react-router'
 import { default as ExpressClient } from '../../clients/express'
 
-import './Detalhe.css'
+import './Details.css'
 
-const Detalhe = () => {
+const Details = () => {
+    const { id } = useParams()
+    console.log(id)
+
     const handleSubmit = () => {}
     const onSubmit = () => {}
     const register = () => {}
     const getEvent = () => {}
 	return (
 		<Fragment>
-			<div className="header">
-			</div>
 			<div className="events-body">
 				<div>
 					<form
@@ -86,4 +88,4 @@ const Detalhe = () => {
   );
 }
 
-export default Detalhe
+export default Details
