@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import { default as useEvent } from '../../../hooks/useEvent'
+import { default as Body } from '../../../components/Body'
 
 import '../css/Home.css'
 
@@ -48,10 +49,10 @@ const Home = () => {
     }, [getEvent])
 
     return (
-        <div className="events-body">
+        <Body>
             <div id="list-events">
             </div>
-        </div>
+        </Body>
     )
 }
 

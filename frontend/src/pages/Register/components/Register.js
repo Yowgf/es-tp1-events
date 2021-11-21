@@ -1,5 +1,6 @@
 import { Button } from '@mui/material'
 import { useForm } from 'react-hook-form'
+import { default as Body } from '../../../components/Body'
 
 import { default as useEvent } from '../../../hooks/useEvent'
 
@@ -23,7 +24,7 @@ const Register = () => {
 	}
 
     return (
-        <div className="events-body"> 
+        <Body> 
             <form
                 className="register-event"
                 onSubmit={handleSubmit(onSubmit)}
@@ -39,7 +40,7 @@ const Register = () => {
                     Register
                 </Button>  
             </form>  
-        </div>
+        </Body>
     )
 }
 
