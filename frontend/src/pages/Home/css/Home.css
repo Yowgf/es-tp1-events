@@ -1,0 +1,51 @@
+.register-event {
+    display: flex;
+    flex-direction: column;
+}
+
+.event-description {
+    margin: 0 0 1em 0;
+}
+
+.list-button {
+    align-self: flex-end;
+}
+
+.register-button {
+    align-self: flex-end;
+}
+
+#list-events {
+    margin: 1em;
+}
+
+#list-events table {
+    /* TODO: maybe fix the width -aholmquist 2021-11-16 */
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+#list-events th:first-child,
+#list-events td:first-child {
+    border-left: 1px solid;
+}
+
+#list-events thead th {
+    border-top: 1px solid;
+    padding: 0;
+    text-align: center;
+    background-color: white;
+}
+
+#list-events th,
+#list-events td {
+    border-color: black;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+}
+
+/* Make sure aligning in center is a good idea */
+#list-events td {
+    text-align: center;
+}

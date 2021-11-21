@@ -1,5 +1,8 @@
-import App from './App'
+import { default as Header } from './Header'
+import { default as Dispatcher } from './Dispatcher'
+
 
 export {
-    App
+    Header,
+    Dispatcher,
 }
