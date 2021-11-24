@@ -1,19 +1,21 @@
-import { Button } from '@mui/material'
+import { backdropClasses, Button } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { Fragment } from 'react'
-import { useParams } from 'react-router'
+import { useParams, useNavigate } from 'react-router'
 import { default as ExpressClient } from '../../clients/express'
-
+import { AiFillEdit, AiFillDelete, AiOutlineCaretLeft  } from "react-icons/ai";
 import './Details.css'
 
 const Details = () => {
     const { id } = useParams()
     console.log(id)
 
+    const navigate = useNavigate()
     const handleSubmit = () => {}
     const onSubmit = () => {}
-    const register = () => {}
-    const getEvent = () => {}
+    const back = () => {
+        navigate('/')
+    }
 	return (
 		<Fragment>
 			<div className="events-body">
@@ -54,32 +56,27 @@ const Details = () => {
                                 puxar do BackEnd
                             </p>
                         </div>
-                        <div className="descricao">
-                            <p className = "titulos">
-                                Descrição:
-                            </p>
+                        <div className='informacoes'>
+                            <div className='opcoes'>
+                                <div className="descricao">
+                                    <p className = "titulos">
+                                        Descrição:
+                                    </p>
+                                </div>
+                                <div className="icones">
+                                  <AiOutlineCaretLeft size={200} onClick={() => back()} className="back-button" /> 
+                                  <AiFillEdit size={200} /> 
+                                  <AiFillDelete size={200} /> 
+                                </div>
+                            </div>
+
+                            <div className="mapa">
+                                <p className = "titulos">
+                                    Mapa:
+                                </p>
+                            </div>
                         </div>
-                        
-						<Button
-							className="register-button"
-							size="small"
-							variant="contained"
-							color="primary"
-							type="submit"
-						>
-							Register
-						</Button>  
 					</form>   
-					<Button
-						className="list-button"
-						size="small"
-						variant="contained"
-						color="primary"
-						type="button"
-						onClick={getEvent}
-					>
-						Voltar
-					</Button>  
 				</div>
 				<div className="list-events">
 				</div>

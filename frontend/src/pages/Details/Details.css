@@ -48,14 +48,41 @@
 .descricao {
     display: flex;
     flex-direction: row;
-    width: 50%;
+    width: 100%;
     height: 200px;
+    border: 0.5px solid #000000;
+    border-radius: 8px;
+}
+
+.back-button:hover {
+    cursor: pointer;
+}
+
+.informacoes {
+    display: flex;
+    flex-direction: row;
+}
+
+.mapa {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    height: 400px;
     margin: 40px 1% 0px 1%;
     border: 0.5px solid #000000;
     border-radius: 8px;
 }
 
-.back-button {
-    align-self: flex-end;
-    margin: 10px 1% 0px 1%;
+.icones {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.opcoes {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 40px 1% 0px 1%;
 }
