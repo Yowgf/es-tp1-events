@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form'
 import { default as Body } from '../../../components/Body'
 
 import { default as useEvent } from '../../../hooks/useEvent'
+import { Form, FormField } from '../../../components/Form'
+import './css/Register.css'
 
 const Register = () => {
 	const { postEvent } = useEvent()
@@ -17,21 +19,35 @@ const Register = () => {
 		},
 		mode: 'onChange',
 	  })
-	const onSubmit = async eventDescription => {
-		console.log(`Requesting submission with '${eventDescription}'`)
-		await postEvent(eventDescription)
-		document.getElementsByClassName("list-events")[0].innerText = eventDescription.eventDescription
+	const onSubmit = async registerFormData => {
+		console.log(`Requesting registration with '${registerFormData.description}'`)
+		await postEvent(registerFormData)
+		document.getElementById("event-description").innerText = registerFormData.description
 	}
 
     return (
         <Body> 
-            <form
-                className="register-event"
+            <Form
+                id="register-form"
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <input className="event-description" {...register("eventDescription")}/>  
+                <FormField
+                    id="event-title"
+                    label="Title"
+                    {...register("title")}
+                />
+                <FormField
+                    id="event-category"
+                    label="Category"
+                    {...register("category")}
+                />
+                <FormField
+                    id="event-description"
+                    label="Description"
+                    {...register("description")}
+                />  
                 <Button
-                    className="register-button"
+                    id="register-button"
                     size="small"
                     variant="contained"
                     color="primary"
@@ -39,7 +55,7 @@ const Register = () => {
                 >
                     Register
                 </Button>  
-            </form>  
+            </Form>  
         </Body>
     )
 }

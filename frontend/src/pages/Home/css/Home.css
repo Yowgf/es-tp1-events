@@ -1,17 +1,4 @@
-.register-event {
-    display: flex;
-    flex-direction: column;
-}
-
-.event-description {
-    margin: 0 0 1em 0;
-}
-
 .list-button {
-    align-self: flex-end;
-}
-
-.register-button {
     align-self: flex-end;
 }
 
