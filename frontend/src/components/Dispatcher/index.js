@@ -5,7 +5,6 @@ import { default as Header } from '../Header'
 import { 
     Home as HomePage,
     Register as RegisterPage,
-    EventsTable as EventsPage
 } from '../../pages'
 
 
@@ -21,8 +20,6 @@ const Dispatcher = () => {
                         <Route path="register" element={<RegisterPage />}>
                         </Route>
 
-                        <Route path="EventsTable" element={<EventsPage />}>
-                        </Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

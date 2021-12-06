@@ -21,6 +21,12 @@ border: 1px solid #ddd;
 padding: 8px;
 }
 
+#Events tr {
+    height: 50px;
+    text-align: left;
+    font-size: 16px;
+}
+
 #Events tr:nth-child(even){background-color: #bbcbcc;}
 
 #Events tr:hover {background-color: rgb(80, 83, 87);}
