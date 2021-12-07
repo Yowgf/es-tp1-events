@@ -15,14 +15,15 @@ const Register = () => {
 		handleSubmit
 	  } = useForm({
 		defaultValues: {
-			eventDescription: '',
+            title: '',
+            category: '',
+			description: '',
 		},
 		mode: 'onChange',
 	  })
 	const onSubmit = async registerFormData => {
-		console.log(`Requesting registration with '${registerFormData.description}'`)
-		await postEvent(registerFormData)
-		document.getElementById("event-description").innerText = registerFormData.description
+		console.log(`Requesting registration with '${Object.values(registerFormData)}'`)
+        postEvent(registerFormData).then(res => console.log("resp:", res))
 	}
 
     return (
@@ -34,17 +35,17 @@ const Register = () => {
                 <FormField
                     id="event-title"
                     label="Title"
-                    {...register("title")}
+                    register={register("title")}
                 />
                 <FormField
                     id="event-category"
                     label="Category"
-                    {...register("category")}
+                    register={register("category")}
                 />
                 <FormField
                     id="event-description"
                     label="Description"
-                    {...register("description")}
+                    register={register("description")}
                 />  
                 <Button
                     id="register-button"

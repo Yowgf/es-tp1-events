@@ -1,11 +1,10 @@
 const EventService = require('../services/event')
 const apiServerClient = require('../client/apiServer')
 
-const getEvent = async (_, res, next) => {
+const getEvent = async (req, res, next) => {
     try {
         const eventService = new EventService(new apiServerClient())
-        const eventGetResponse = await eventService.getEvent()
-        console.log(eventGetResponse.data)
+        const eventGetResponse = await eventService.getEvent(req)
         res.status(200).send(eventGetResponse.data)
     } catch (e) {
         next(e)
@@ -22,7 +21,18 @@ const postEvent = async (req, res, next) => {
     }
 }
 
+const putEvent = async (req, res, next) => {
+    try {
+        const eventService = new EventService(new apiServerClient())
+        const eventPutResponse = await eventService.putEvent(req)
+        res.status(200).send(eventPutResponse.data)
+    } catch (e) {
+        next(e)
+    }
+}
+
 module.exports = {
     getEvent,
     postEvent,
+    putEvent,
 }

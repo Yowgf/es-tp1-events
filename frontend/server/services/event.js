@@ -5,9 +5,9 @@ class EventService {
         this.Event = new Event(apiServerClient)
     }
 
-    async getEvent() {
+    async getEvent(req) {
         try {
-            return await this.Event.getEvent()
+            return await this.Event.getEvent(req)
         } catch (e) {
             throw e
         }
@@ -16,6 +16,14 @@ class EventService {
     async postEvent(req) {
         try {
             return await this.Event.postEvent(req)
+        } catch (e) {
+            throw e
+        }
+    }
+
+    async putEvent(req) {
+        try {
+            return await this.Event.putEvent(req)
         } catch (e) {
             throw e
         }

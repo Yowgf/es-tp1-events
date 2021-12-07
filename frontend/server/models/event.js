@@ -3,9 +3,9 @@ class Event {
         this.apiServerClient = apiServerClient
     }
 
-    async getEvent() {
+    async getEvent(req) {
         return await this.apiServerClient
-            .getEvent()
+            .getEvent(req)
             .then(res => res)
             .catch(e => {
                 throw e
@@ -15,6 +15,15 @@ class Event {
     async postEvent(req) {
         return await this.apiServerClient
             .postEvent(req)
+            .then(res => res)
+            .catch(e => {
+                throw e
+            })
+    }
+
+    async putEvent(req) {
+        return await this.apiServerClient
+            .putEvent(req)
             .then(res => res)
             .catch(e => {
                 throw e

@@ -16,14 +16,15 @@ const FormField = (props) => {
     return (
         <Fragment>
             {(props.id !== undefined && props.label !== undefined) ?
-                <label className="form-label" for={props.id}>
+                <label className="form-label" htmlFor={props.id}>
                     {props.label}
                 </label> :
                 <></>
             }
             <input 
+                id={props.id} 
                 className="form-field"
-                {...props} 
+                {...props.register}
             >
                 {props.children}
             </input>
