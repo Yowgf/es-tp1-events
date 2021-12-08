@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form'
 import { default as Body } from '../../../components/Body'
 
 import { default as useEvent } from '../../../hooks/useEvent'
+import { Form, FormField } from '../../../components/Form'
+import './css/Register.css'
 
 const Register = () => {
 	const { postEvent } = useEvent()
@@ -13,25 +15,40 @@ const Register = () => {
 		handleSubmit
 	  } = useForm({
 		defaultValues: {
-			eventDescription: '',
+            title: '',
+            category: '',
+			description: '',
 		},
 		mode: 'onChange',
 	  })
-	const onSubmit = async eventDescription => {
-		console.log(`Requesting submission with '${eventDescription}'`)
-		await postEvent(eventDescription)
-		document.getElementsByClassName("list-events")[0].innerText = eventDescription.eventDescription
+	const onSubmit = async registerFormData => {
+		console.log(`Requesting registration with '${Object.values(registerFormData)}'`)
+        postEvent(registerFormData).then(res => console.log("resp:", res))
 	}
 
     return (
         <Body> 
-            <form
-                className="register-event"
+            <Form
+                id="register-form"
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <input className="event-description" {...register("eventDescription")}/>  
+                <FormField
+                    id="event-title"
+                    label="Title"
+                    register={register("title")}
+                />
+                <FormField
+                    id="event-category"
+                    label="Category"
+                    register={register("category")}
+                />
+                <FormField
+                    id="event-description"
+                    label="Description"
+                    register={register("description")}
+                />  
                 <Button
-                    className="register-button"
+                    id="register-button"
                     size="small"
                     variant="contained"
                     color="primary"
@@ -39,7 +56,7 @@ const Register = () => {
                 >
                     Register
                 </Button>  
-            </form>  
+            </Form>  
         </Body>
     )
 }

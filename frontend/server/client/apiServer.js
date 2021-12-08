@@ -8,7 +8,7 @@ class apiServerClient {
         this.instance = axios.create({
             // Notice that we need API_SERVER_URL to be defined in the environmment.
             baseURL: `${process.env.API_SERVER_URL}`,
-            timeout: 10000,
+            timeout: 1000,
             headers: {
                 common: { Accept: APPLICATION_JSON_MIME_TYPE },
                 post: { 'Content-Type': APPLICATION_JSON_MIME_TYPE },
@@ -31,13 +31,16 @@ class apiServerClient {
         return this.instance.put(...args)
     }
 
-    async getEvent() {
-        const endpoint = '/event/'
-        return await this.get(endpoint)
+    async getEvent(req) {
+        return await this.get(req.originalUrl, req)
+            .then(res => res)
+            .catch(e => {
+                throw e
+            })
     }
 
     async postEvent(req) {
-        return await this.post(req.originalUrl, req.body)
+        return await this.post(req.originalUrl, req)
             .then(res => res)
             .catch(e => {
                 throw e
@@ -45,7 +48,7 @@ class apiServerClient {
     }
 
     async putEvent(req) {
-        return await this.put(req.originalUrl, req.body)
+        return await this.put(req.originalUrl, req)
             .then(res => res)
             .catch(e => {
                 throw e
