@@ -140,18 +140,23 @@ npm install
 ```
 
 Desta forma, todas as dependências do projeto devem ser instaladas no diretório
-*node_modules*. Então, para realizar o deploy de todas as aplicações, basta
-rodar o script _deploy.sh_:
+*node_modules*. Então, para realizar o deploy de todas as aplicações:
 
 ```shell
-./deploy.sh
+make deploy
 ```
 
 Este script deve iniciar três servidores, nas portas 3000, 3001 e 8000. É fácil
-ver se eles estão em pé utilizando o script *check_servers.sh*.
+ver se eles estão em pé utilizando `healthcheck`.
 
 ```shell
-./check_servers.sh
+make healthcheck
 ```
 
-Para reiniciar os servidores, pode-se executar `restart.sh`.
+Para reiniciar os servidores, pode-se fazer:
+
+```shell
+make restart
+```
+
+Veja outras opções interessantes, como `watch`, no arquivo *Makefile*.
