@@ -5,11 +5,11 @@ def getAllEvents(sm):
     return wrapGetResponse(eventsJSON)
 
 def postEvent(sm):
-	req = request.get_json()
-	if req == None:
-		return Response("", status=415)
+    req = request.args
+    if req == None:
+        return Response("", status=415)
 	
-	return Response(sm.postEvent(req), status=200)
+    return Response(sm.postEvent(req), status=200)
 
 # Add 'boilerplate' information to the response
 def wrapGetResponse(rawResp):
