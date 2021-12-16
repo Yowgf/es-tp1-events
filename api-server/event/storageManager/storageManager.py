@@ -24,3 +24,10 @@ class storageManager:
         )
         db.session.add(newEvent)
         db.session.commit()
+
+    def getEvent(self, eventId):
+        return db.session.query(Event).filter_by(id=eventId).first()
+    
+    def getEventJSON(self, eventId):
+        return db.session.query(Event).filter_by(id=eventId).first().toJSON()
+

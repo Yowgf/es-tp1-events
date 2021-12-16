@@ -4,6 +4,11 @@ def getAllEvents(sm):
     eventsJSON = sm.getAllEventsJSON()
     return wrapGetResponse(eventsJSON)
 
+def getEvent(sm, eventId):
+    eventJSON = sm.getEventJSON(eventId)
+    print(eventJSON, flush=True)
+    return eventJSON
+
 def postEvent(sm):
     req = request.args
     if req == None:
