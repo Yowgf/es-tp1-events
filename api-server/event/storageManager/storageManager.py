@@ -1,32 +1,33 @@
 from ..utils.ID import ID
-from .event.event import event
+from .event.event import Event, User, Category
+from .event import db
 
 class storageManager:
     def __init__(self):
-        # Map of event ids to events
-        self.events = {}
-
-    def getSampleEventsJSON():
-        return [
-            event(
-                "1990-01-01T23:59:59",
-                "natural_catastrophe",
-                "A hurricane just passed by Belo Horizonte!",
-            ).toJSON(),
-            event(
-                "1990-01-01T23:59:59",
-                "criminal_incident",
-                "Someone just stole my wallet while I was eating some acai!",
-            ).toJSON(),
-        ]
+        pass
 
     def getAllEvents(self):
-        return [e for e in self.events.values()]
+        return db.session.query(Event).all()
 
     def getAllEventsJSON(self):
-        return [e.toJSON() for e in self.events.values()]
+        return [e.toJSON() for e in db.session.query(Event).all()]
 
-    # TODO: in the future, we probably want to store a row in a database -aholmquist 2021-12-05
     def postEvent(self, req):
-        newEventId = ID.findNotIn(self.events)
-        self.events[newEventId] = event(req["createdAt"], req["title"], req["category"], req["description"])
+        newEvent = Event(
+            req["name"], 
+            req["description"], 
+            req["createdAt"], 
+            req["latitude"], 
+            req["longitude"], 
+            Category.query.filter_by(name=req["category"]).with_entities(Category.id).first()[0],
+            User.query.filter_by(name=req["user"]).with_entities(User.id).first()[0]
+        )
+        db.session.add(newEvent)
+        db.session.commit()
+
+    def getEvent(self, eventId):
+        return db.session.query(Event).filter_by(id=eventId).first()
+    
+    def getEventJSON(self, eventId):
+        return db.session.query(Event).filter_by(id=eventId).first().toJSON()
+
