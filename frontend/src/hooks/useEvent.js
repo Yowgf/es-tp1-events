@@ -1,13 +1,13 @@
 import { default as ExpressClient } from '../clients/express'
+import { ISODatetime } from '../utils'
 
 const useEvent = () => {
 	const expressClient = new ExpressClient()
 
-	const wrapEvent = eventDescription => {
+	const wrapEvent = eventData => {
 		return {
-			"datetime": "", // TODO: get current datetime -- aholmquist 2021-10-31
-			"category": "all", // TODO: category should be input from user -- aholmquist 2021-10-31
-			"event_description": eventDescription
+			"createdAt": (new ISODatetime()).Now(),
+			...eventData,
 		}
 	}
 
@@ -15,18 +15,17 @@ const useEvent = () => {
 		try {
 			return await expressClient.getEvent().then(res => res.data)
 		} catch(e) {
-			// TODO: should instead use lodash to log message -- aholmquist 2021-10-31
-			console.log(`Error when getting event: ${e}`)
+			console.error(`when getting event: ${e}`)
 		}
 	}
 
-	const postEvent = async eventDescription => {
-		const eventObj = wrapEvent(eventDescription)
+	const postEvent = async eventData => {
+		const eventObj = wrapEvent(eventData)
+		console.log("wrapped event description:", eventObj.description)
 		try {
 			return await expressClient.postEvent(eventObj).then(res => res)
 		} catch(e) {
-			// TODO: should instead use lodash to log message -- aholmquist 2021-10-31
-			console.log("Error when posting event")
+			console.error("Error when posting event")
 		}
 	}
 

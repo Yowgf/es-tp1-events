@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const EXPRESS_CLIENT_TIMEOUT = 10000
+const EXPRESS_CLIENT_TIMEOUT = 1000
 
 class ExpressClient {
     constructor() {
@@ -35,12 +35,12 @@ class ExpressClient {
     }
 
     async postEvent(data, config) {
-        const url = `/event/list/${data["category"]}`
+        const url = `/event`
         this.post(url, data, config)
     }
 
     async putEvent(data, config) {
-        const url = `/event/list/${data["category"]}`
+        const url = `/event`
         this.put(url, data, config)
     }
 }

@@ -1,33 +1,25 @@
-from json import dumps
+from flask import request, Response
 
-from .model import event
-    
-# TODO: here we are mocking a table with all events. In the future, we should get this from an actual database
-table = {
-	"1234": {
-		"event_title": "Hurricane",
-		"datetime": "1990-01-01T23:59:59",
-		"event_category": "natural_catastrophe",
-		"event_description": "A hurricane just passed by Belo Horizonte!"
-	},
-	"4321": {
-		"event_title": "Wallet robbery",
-		"datetime": "1990-01-01T23:59:59",
-		"event_category": "criminal_incident",
-		"event_description": "Someone just stole my wallet while I was eating some acai!"
-	}
-}
+def getAllEvents(sm):
+    eventsJSON = sm.getAllEventsJSON()
+    return wrapGetResponse(eventsJSON)
 
-def getEvent(event_id):
-	return wrapResponse(table[event_id])
+def getEvent(sm, eventId):
+    eventJSON = sm.getEventJSON(eventId)
+    print(eventJSON, flush=True)
+    return eventJSON
 
-def getAllEventsService():
-    return wrapResponse(table)
+def postEvent(sm):
+    req = request.args
+    if req == None:
+        return Response("", status=415)
+	
+    return Response(sm.postEvent(req), status=200)
 
 # Add 'boilerplate' information to the response
-def wrapResponse(table):
-    response = {
+def wrapGetResponse(rawResp):
+    wrappedResp = {
         "version": "v0.0.1",
-        "events_list": table
+        "events_list": rawResp,
     }
-    return dumps(response)
+    return wrappedResp

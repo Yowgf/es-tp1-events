@@ -4,19 +4,24 @@ import { default as useEvent } from '../../../hooks/useEvent'
 import { default as Body } from '../../../components/Body'
 
 import '../css/Home.css'
+import '../../../errors/empty-list.css'
 
 const InjectEventsTable = (eventList) => {
-    if (eventList === "") {
-        console.log("Received empty events list from server")
-        return
-    }
-
     var listEventsDiv = document.getElementById("list-events")
 
     // First clean the element
     listEventsDiv.innerHTML = ""
 
-    // Now build and insert the table
+    // If events list is empty, we insert a message instead
+    if (Object.keys(eventList).length === 0) {
+        listEventsDiv.innerHTML = 
+        '<span class="empty-list-error">\
+            There are no registered events\
+        </span>'
+        return
+    }
+
+    // Build and insert the table
     var table = listEventsDiv.appendChild(document.createElement("table"))
 
     // Create header of table
@@ -55,7 +60,13 @@ const InjectEventsTable = (eventList) => {
 const Home = () => {
     const { getEvent } = useEvent()
     useEffect(() => {
-        getEvent().then(res => InjectEventsTable(res.events_list))
+        getEvent().then(res => {
+            if (res === undefined || res.events_list === undefined) {
+                console.error("Invalid getEvent response from server:", res)
+                return
+            }
+            return InjectEventsTable(res.events_list)
+        })
     }, [getEvent])
 
     return (
