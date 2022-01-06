@@ -3,6 +3,12 @@
 # This application helps get the logs for some server
 ################################################################################
 
-serverName=$1
 tempLogDir='temp-log'
-tac "${tempLogDir}/${serverName}.log" | less
+logFiles=`echo $tempLogDir/*.log`
+
+select f in ${logFiles}; do
+    if [[ $REPLY = 'quit' || $REPLY = 'exit' ]]; then
+	exit 0
+    fi
+    cat "$f" | less
+done

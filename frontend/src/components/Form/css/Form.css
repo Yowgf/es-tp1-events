@@ -1,0 +1,14 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+}
+
+.form-field {
+    margin-bottom: 0.5em;
+}
+
+.form-label {
+    display: block;
+    font-weight: bold;
+}
