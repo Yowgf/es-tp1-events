@@ -30,7 +30,7 @@ class ExpressClient {
     }
 
     async getEvent(config) {
-        const url = "/event"
+        const url = "http://localhost:8000/event"
         return this.get(url, config)
     }
 
