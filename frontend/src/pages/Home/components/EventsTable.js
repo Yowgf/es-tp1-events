@@ -147,7 +147,7 @@ class EventsTable extends Component{
                 console.log(description.length)
                 console.log(this.descLength)
                 return (
-                <tr key={page * this.eventsOnPage + index} onClick={() =>this.EventClick(title)}>
+                <tr key={this.state.events[event]['id']} onClick={() =>this.EventClick(title)}>
                     <td>{title}</td>
                     <td>{category}</td>
                     <td>{description}</td>
