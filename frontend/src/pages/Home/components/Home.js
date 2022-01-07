@@ -28,9 +28,11 @@ const InjectEventsTable = (eventList) => {
     var headerThead = table.appendChild(document.createElement("thead"))
     var headerRow = headerThead.appendChild(document.createElement("tr"))
     Object.keys(eventList[Object.keys(eventList)[0]]).forEach(key => {
-        var header = document.createElement("th")
-        header.innerText = key
-        headerRow.appendChild(header)
+        if (key !== 'id') {
+            var header = document.createElement("th")
+            header.innerText = key
+            headerRow.appendChild(header)  
+        }
     })
 
     // And the body
@@ -39,9 +41,11 @@ const InjectEventsTable = (eventList) => {
         var val = eventList[key]
         var newRow = document.createElement("tr")
         Object.keys(val).forEach(key => {
-            var newTd = document.createElement("td")
-            newTd.innerText = val[key]
-            newRow.appendChild(newTd)
+            if (key !== 'id') {
+                var newTd = document.createElement("td")
+                newTd.innerText = val[key]
+                newRow.appendChild(newTd)
+            }
         })
         tableBody.appendChild(newRow)
     })
