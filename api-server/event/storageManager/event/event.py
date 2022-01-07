@@ -23,13 +23,14 @@ class Event(db.Model):
 
     def toJSON(self):
          return { 
+            "id": self.id,
             "name": self.name,
             "description": self.description,
             "createdAt": self.datetime,
             "latitude": self.latitude,
             "longitude": self.longitude,
-            "category": Category.query.filter_by(id=self.category_id).with_entities(Category.name).first(),
-            "user": User.query.filter_by(id=self.user_id).with_entities(User.name).first(),
+            "category": Category.query.filter_by(id=self.category_id).with_entities(Category.name).first().name,
+            "user": User.query.filter_by(id=self.user_id).with_entities(User.name).first().name,
          }
         
 
