@@ -13,7 +13,7 @@ const randomColor = () => {
 
 // create legend with the events' categories and a random generated color for each one
 const createLegend = (eventList) => {
-    const categories = [...new Set(eventList.map(event => event.category.name))]
+    const categories = [...new Set(eventList.map(event => event.category))]
     let category2color = {}
     categories.forEach(category => {
         category2color[category] = randomColor();
@@ -50,7 +50,7 @@ const addEventsLayer = (map, eventList) => {
 
     eventList.forEach(event => {
         new mapboxgl.Marker({
-            color: category2color[event.category.name]
+            color: category2color[event.category]
         })
             .setLngLat([event.longitude, event.latitude])
             .setPopup(
