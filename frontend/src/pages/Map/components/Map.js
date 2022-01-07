@@ -27,6 +27,13 @@ const addEventsLayer = (map, eventList) => {
     eventList.forEach(event => {
         new mapboxgl.Marker()
             .setLngLat([event.longitude, event.latitude])
+            .setPopup(
+                new mapboxgl.Popup({ offset: 25 })
+                    .setHTML(
+                        `<h3>${event.name}</h3>\
+                        <p>${event.description}</p>`
+                    )
+            )
             .addTo(map)
     });
 }
