@@ -23,27 +23,31 @@ const InjectEventsTable = (eventList) => {
 
     // Build and insert the table
     var table = listEventsDiv.appendChild(document.createElement("table"))
+    table.classList.add('table')
+    table.classList.add('table-striped')
+    table.classList.add('table-bordered')
+    table.classList.add('table-hover')
 
     // Create header of table
+    var tableAttributes = ['id', 'name', 'description', 'category', 'createdAt', 'latitude', 'longitude', 'user']
     var headerThead = table.appendChild(document.createElement("thead"))
     var headerRow = headerThead.appendChild(document.createElement("tr"))
-    Object.keys(eventList[Object.keys(eventList)[0]]).forEach(key => {
-        if (key !== 'id') {
+    tableAttributes.forEach(attribute => {
+        if (attribute !== 'id') {
             var header = document.createElement("th")
-            header.innerText = key
+            header.innerText = attribute
             headerRow.appendChild(header)  
         }
     })
 
     // And the body
     var tableBody = table.appendChild(document.createElement("tbody"))
-    Object.keys(eventList).forEach(key => {
-        var val = eventList[key]
+    eventList.forEach(event => {
         var newRow = document.createElement("tr")
-        Object.keys(val).forEach(key => {
-            if (key !== 'id') {
+        tableAttributes.forEach(attribute => {
+            if (attribute !== 'id') {
                 var newTd = document.createElement("td")
-                newTd.innerText = val[key]
+                newTd.innerText = event[attribute]
                 newRow.appendChild(newTd)
             }
         })

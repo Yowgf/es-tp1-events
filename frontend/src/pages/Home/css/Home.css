@@ -1,4 +1,4 @@
-.list-button {
+/* .list-button {
     align-self: flex-end;
 }
 
@@ -9,11 +9,12 @@
 }
 
 #list-events table {
-    /* TODO: maybe fix the width -aholmquist 2021-11-16 */
+     TODO: maybe fix the width -aholmquist 2021-11-16 
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-}
+} 
+
 
 #list-events th:first-child,
 #list-events td:first-child {
@@ -35,6 +36,6 @@
 }
 
 /* Make sure aligning in center is a good idea */
-#list-events td {
+/* #list-events td {
     text-align: center;
-}
+}  */
