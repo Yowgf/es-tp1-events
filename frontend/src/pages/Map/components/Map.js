@@ -13,6 +13,8 @@ const addEventsLayer = (map, eventList) => {
     const nav = new mapboxgl.NavigationControl();
     map.addControl(nav, "top-right");
 
+    var mapDiv = document.getElementById("mapContainer")
+
     // If events list is empty, we insert a message instead
     if (Object.keys(eventList).length === 0) {
         mapDiv.innerHTML =
