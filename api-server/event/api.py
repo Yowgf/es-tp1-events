@@ -15,3 +15,4 @@ def root():
 @bp.route("/<event_id>", methods=["GET"])
 def get_event_by_id(event_id):
     return getEvent(app.sm, event_id)
+    

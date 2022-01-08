@@ -11,10 +11,18 @@ const useEvent = () => {
 		}
 	}
 
-	const getEvent = async () => {
+	const getEvents = async () => {
 		try {
-			return await expressClient.getEvent().then(res => res.data)
+			return await expressClient.getEvents().then(res => res.data)
 		} catch(e) {
+			console.error(`when getting events: ${e}`)
+		}
+	}
+
+	const getEvent = async (eventID) => {
+		try {
+			return await expressClient.getEvent(eventID).then(res => res.data)
+		} catch (e) {
 			console.error(`when getting event: ${e}`)
 		}
 	}
@@ -31,6 +39,7 @@ const useEvent = () => {
 
 	return {
 		expressClient,
+		getEvents,
 		getEvent,
 		postEvent,
 	}

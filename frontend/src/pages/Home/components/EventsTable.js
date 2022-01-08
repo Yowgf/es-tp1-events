@@ -5,8 +5,8 @@ import '../css/styles.css'
 
 
 const GetEvents = async ()=>{
-    const { getEvent } = useEvent()
-    return await getEvent()
+    const { getEvents } = useEvent()
+    return await getEvents()
 }
 
 class EventsTable extends Component{
@@ -145,7 +145,7 @@ class EventsTable extends Component{
      render() {
         return (
            <div id="table">
-              <h1 id='title'>Eventos Recentes</h1>
+                <h1 id='title'>Recent Events</h1>
               <table id='Events'>
                  <tbody>
                     <tr>{this.renderTableHeader()}</tr>
