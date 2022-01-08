@@ -77,12 +77,12 @@ const createMap = () => {
 }
 
 const Map = () => {
-    const { getEvent } = useEvent()
+    const { getEvents } = useEvent()
 
     mapboxgl.accessToken = 'pk.eyJ1IjoibGVvbmVsbW90YSIsImEiOiJja3k0ZmhmZWUwYmRzMnZwOGVzc3gzc3JtIn0._T-Ie9E_XOgWuGgLytYIAg';
     useEffect(() => {
         const map = createMap()
-        getEvent().then(res => {
+        getEvents().then(res => {
             console.log('res', res)
             if (res === undefined || res.events_list === undefined) {
                 console.error("Invalid getEvent response from server:", res)
@@ -90,7 +90,7 @@ const Map = () => {
             }
             return addEventsLayer(map, res.events_list)
         })
-    }, [getEvent]);
+    }, [getEvents]);
 
     return (
         <Body>

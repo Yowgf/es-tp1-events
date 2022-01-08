@@ -29,8 +29,13 @@ class ExpressClient {
         return this.instance.put(url, JSON.stringify(data), config)
     }
 
-    async getEvent(config) {
+    async getEvents(config) {
         const url = "http://localhost:8000/event"
+        return this.get(url, config)
+    }
+
+    async getEvent(eventId, config) {
+        const url = `http://localhost:8000/event/${eventId}`
         return this.get(url, config)
     }
 
