@@ -4,8 +4,9 @@ import { Fragment } from 'react'
 import { default as Header } from '../Header'
 import { 
     Home as HomePage,
-    Register as RegisterPage,
-    Details as DetailsPage
+    Map as MapPage,
+    Register as RegisterPage
+
 } from '../../pages'
 
 
@@ -18,11 +19,11 @@ const Dispatcher = () => {
                     <Route path="/">
                         <Route index element={<HomePage />}/>
 
+                        <Route path="map" element={<MapPage />}>
+                        </Route>
                         <Route path="register" element={<RegisterPage />}>
                         </Route>
 
-                        <Route path="eventDetails/:id" element={<DetailsPage />}>
-                        </Route>
                     </Route>
                 </Routes>
             </BrowserRouter>
