@@ -119,6 +119,10 @@ que se interessem pelo mesmo tipo de evento.
 
 - Usuário deve poder clicar em um evento no mapa e ser redirecionado para a
   página do evento.
+  
+## Backlog
+- Poder cadastrar a localização do evento utilizando o seu endereço, para isso seria
+  necessário utilizar uma API de geocodificação, como do Google Maps ou OpenStreetMap
 
 
 ## Observações
