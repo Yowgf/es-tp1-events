@@ -1,13 +1,12 @@
 
 import { default as useEvent } from '../../../hooks/useEvent'
-import React, { Component, useState, setState } from 'react'
+import React, { Component } from 'react'
 import '../css/styles.css'
 
 
 const GetEvents = async ()=>{
     const { getEvent } = useEvent()
-    var a = await getEvent()
-    return a
+    return await getEvent()
 }
 
 class EventsTable extends Component{
@@ -26,13 +25,14 @@ class EventsTable extends Component{
         try{
             var events = await GetEvents()
             events = events.events_list
-            events.sort((a, b) => (a.createdAt > b.createdAt) ? 1 : -1)
+            events.sort((a, b) => (new Date(a.createdAt) > new Date(b.createdAt)) ? 1 : -1)
             this.setState({events: events})
             this.setState({numPages:events.length/this.eventsOnPage})
             console.log(this.eventsOnPage)
         }
         catch(e){
             console.log("Failed to Load Data from Server")
+            console.log(e)
             this.setState({events:[]})
         }
     }
@@ -41,10 +41,10 @@ class EventsTable extends Component{
         console.log(title)
     }
     SortTable(method){
+        var events = this.state.events
         if(method === 'title'){
             console.log('Ordenando por Titulo')
 
-            var events = this.state.events
             console.log(events[0])
             if(this.state.sorted === 'titleCres'){
                 events.sort((a, b) => (a.name < b.name) ? 1 : -1)
@@ -60,7 +60,6 @@ class EventsTable extends Component{
         else if(method === 'category'){
             console.log('Ordenando por Categoria')
 
-            var events = this.state.events
             console.log(events[0])
             if(this.state.sorted === 'catCres'){
                 events.sort((a, b) => (a.category < b.category) ? 1 : -1)
@@ -76,7 +75,6 @@ class EventsTable extends Component{
         else if(method === 'description'){
             console.log('Ordenando por Descrição')
 
-            var events = this.state.events
             console.log(events[0])
             if(this.state.sorted === 'descCres'){
                 events.sort((a, b) => (a.description < b.description) ? 1 : -1)
@@ -92,23 +90,21 @@ class EventsTable extends Component{
         else if(method === 'datetime'){
             console.log('Ordenando por Datetime')
 
-            var events = this.state.events
             console.log(events[0])
-            if(this.state.sorted === 'createCres'){
-                events.sort((a, b) => (a.createdAt < b.createdAt) ? 1 : -1)
-                this.setState({sorted:'createDes'})
+            if(this.state.sorted === 'dateCres'){
+                events.sort((a, b) => (new Date(a.createdAt) < new Date(b.createdAt)) ? 1 : -1)
+                this.setState({sorted:'dateDes'})
 
             }
             else{
-                events.sort((a, b) => (a.createdAt > b.createdAt) ? 1 : -1)
-                this.setState({sorted:'createCres'})
+                events.sort((a, b) => (new Date(a.createdAt) > new Date(b.createdAt)) ? 1 : -1)
+                this.setState({sorted:'dateCres'})
             }
             this.setState({events:events})
         }
         else if(method === 'user'){
             console.log('Ordenando por User')
 
-            var events = this.state.events
             console.log(events[0])
             if(this.state.sorted === 'userCres'){
                 events.sort((a, b) => (a.user < b.user) ? 1 : -1)
@@ -130,10 +126,10 @@ class EventsTable extends Component{
             console.log(page * this.eventsOnPage, (page + 1) * this.eventsOnPage)
             console.log("==========================================")
             return Object.keys(this.state.events).slice(page * this.eventsOnPage, (page + 1) * this.eventsOnPage).map((event, index) => {
-                var datetime = this.state.events[event]['createdAt']
+                var datetime = new Date(this.state.events[event]['createdAt']).toISOString()
                 var aux = ""
                 aux = datetime.slice(8,10) + "/" + datetime.slice(5,7) + "/" + datetime.slice(0,4)
-                aux = aux + " as " + datetime.slice(11,datetime.length)
+                aux = aux + " as " + datetime.slice(11,16)
                 datetime = aux
                 const category = this.state.events[event]['category']
                 var description = this.state.events[event]['description']
@@ -162,8 +158,6 @@ class EventsTable extends Component{
       
     renderTableHeader() {
         if(this.state.events !== 0){
-            let header = Object.keys(this.state)
-            header = Object.keys(this.state[header[0]])
             return (
                 [<th key={"title"} onClick={()=>this.SortTable('title')}>{"TITLE"}</th>,
                 <th key={"category"} onClick={()=>this.SortTable('category')}>{"CATEGORY"}</th>,
