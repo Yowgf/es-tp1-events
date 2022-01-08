@@ -6,6 +6,7 @@ import {
     Home as HomePage,
     Map as MapPage,
     Register as RegisterPage
+
 } from '../../pages'
 
 
@@ -22,6 +23,7 @@ const Dispatcher = () => {
                         </Route>
                         <Route path="register" element={<RegisterPage />}>
                         </Route>
+
                     </Route>
                 </Routes>
             </BrowserRouter>

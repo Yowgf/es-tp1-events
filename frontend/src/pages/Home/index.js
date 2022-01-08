@@ -1,2 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-export { default } from './components/Home'
+
+export {default} from './components/EventsTable'
+
