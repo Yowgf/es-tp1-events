@@ -121,10 +121,6 @@ class EventsTable extends Component{
     }
     renderTableData(page) {
         if(this.state.events !== 0){
-            console.log(page)
-            console.log(this.eventsOnPage)
-            console.log(page * this.eventsOnPage, (page + 1) * this.eventsOnPage)
-            console.log("==========================================")
             return Object.keys(this.state.events).slice(page * this.eventsOnPage, (page + 1) * this.eventsOnPage).map((event, index) => {
                 var datetime = new Date(this.state.events[event]['createdAt']).toISOString()
                 var aux = ""
