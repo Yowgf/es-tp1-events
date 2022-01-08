@@ -18,6 +18,8 @@ npm run --prefix "${frontendDir}" start > "${tempLogPath}"/frontend.log 2>&1 &
 npm run --prefix "${frontendDir}" server > "${tempLogPath}"/bff.log 2>&1 &
 
 # Spin apiServer
-python3 -m venv venv
-. venv/bin/activate
-FLASK_APP="${apiServerDir}" flask run --port "${apiServerPort}" > "${tempLogPath}"/apiServer.log 2>&1 &
+export FLASK_APP="${apiServerDir}"
+set -a
+source ./${apiServerDir}/.env
+set +a
+python3 -m flask run --port "${apiServerPort}" > "${tempLogPath}"/apiServer.log 2>&1 &

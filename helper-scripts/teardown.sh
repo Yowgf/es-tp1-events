@@ -4,5 +4,5 @@
 # (uses the plain killall command)
 ################################################################################
 
-killall flask
+killall python3
 killall node
