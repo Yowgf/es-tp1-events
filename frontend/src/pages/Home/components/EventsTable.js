@@ -57,36 +57,6 @@ class EventsTable extends Component{
             }
             this.setState({events:events})
         }
-        else if(method === 'category'){
-            console.log('Ordenando por Categoria')
-
-            console.log(events[0])
-            if(this.state.sorted === 'catCres'){
-                events.sort((a, b) => (a.category < b.category) ? 1 : -1)
-                this.setState({sorted:'catDes'})
-
-            }
-            else{
-                events.sort((a, b) => (a.category > b.category) ? 1 : -1)
-                this.setState({sorted:'catCres'})
-            }
-            this.setState({events:events})
-        }
-        else if(method === 'description'){
-            console.log('Ordenando por Descrição')
-
-            console.log(events[0])
-            if(this.state.sorted === 'descCres'){
-                events.sort((a, b) => (a.description < b.description) ? 1 : -1)
-                this.setState({sorted:'descDes'})
-
-            }
-            else{
-                events.sort((a, b) => (a.description > b.description) ? 1 : -1)
-                this.setState({sorted:'descCres'})
-            }
-            this.setState({events:events})
-        }
         else if(method === 'datetime'){
             console.log('Ordenando por Datetime')
 
@@ -102,20 +72,20 @@ class EventsTable extends Component{
             }
             this.setState({events:events})
         }
-        else if(method === 'user'){
-            console.log('Ordenando por User')
+        else if (method === 'latitude' || method === 'longitude' || method === 'user'
+            || method === 'description' || method === 'category') {
+            console.log(`Ordenado por ${method}`)
 
-            console.log(events[0])
-            if(this.state.sorted === 'userCres'){
-                events.sort((a, b) => (a.user < b.user) ? 1 : -1)
-                this.setState({sorted:'userDes'})
+            if (this.state.sorted === `${method}Cres`) {
+                events.sort((a, b) => (a[method] < b[method]) ? 1 : -1)
+                this.setState({ sorted: `${method}Des` })
 
             }
-            else{
-                events.sort((a, b) => (a.user > b.user) ? 1 : -1)
-                this.setState({sorted:'userCres'})
+            else {
+                events.sort((a, b) => (a[method] > b[method]) ? 1 : -1)
+                this.setState({ sorted: `${method}Cres` })
             }
-            this.setState({events:events})
+            this.setState({ events: events })
         }
 
     }
@@ -135,6 +105,8 @@ class EventsTable extends Component{
                 }
                 const title = this.state.events[event]['name']
                 const user = this.state.events[event]['user']
+                const latitude = this.state.events[event]['latitude']
+                const longitude = this.state.events[event]['longitude']
                 console.log(this.state.events[event])
                 console.log(description.length)
                 console.log(this.descLength)
@@ -145,6 +117,8 @@ class EventsTable extends Component{
                     <td>{description}</td>
                     <td>{datetime}</td>
                     <td>{user}</td>
+                        <td>{latitude}</td>
+                        <td>{longitude}</td>
                 </tr>
                 )
             })}
@@ -159,7 +133,9 @@ class EventsTable extends Component{
                 <th key={"category"} onClick={()=>this.SortTable('category')}>{"CATEGORY"}</th>,
                 <th key={"description"} onClick={()=>this.SortTable('description')}>{"DESCRIPTION"}</th>,
                 <th key={"datetime"} onClick={()=>this.SortTable('datetime')}>{"DATE"}</th>,
-                <th key={"user"} onClick={()=>this.SortTable('user')}>{"USER"}</th>]
+                    <th key={"user"} onClick={() => this.SortTable('user')}>{"USER"}</th>,
+                    <th key={"latitude"} onClick={() => this.SortTable('latitude')}>{"LATITUDE"}</th>,
+                    <th key={"longitude"} onClick={() => this.SortTable('latitude')}>{"LONGITUDE"}</th>]
 
             )
         }
@@ -175,7 +151,7 @@ class EventsTable extends Component{
                     <tr>{this.renderTableHeader()}</tr>
                     {this.renderTableData(this.state.page)}
                  </tbody>
-              </table>,
+                </table>
               <button onClick={() => this.setState({page: this.state.page - 1})} disabled={this.state.page === 0}>
                 {' < '}
               </button>
