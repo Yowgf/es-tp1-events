@@ -11,6 +11,16 @@ const getEvent = async (req, res, next) => {
     }
 }
 
+const getEvents = async (req, res, next) => {
+    try {
+        const eventService = new EventService(new apiServerClient())
+        const eventGetResponse = await eventService.getEvent(req)
+        res.status(200).send(eventGetResponse.data)
+    } catch (e) {
+        next(e)
+    }
+}
+
 const postEvent = async (req, res, next) => {
     try {
         const eventService = new EventService(new apiServerClient())
@@ -33,6 +43,7 @@ const putEvent = async (req, res, next) => {
 
 module.exports = {
     getEvent,
+    getEvents,
     postEvent,
     putEvent,
 }

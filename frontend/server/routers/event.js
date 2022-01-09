@@ -3,7 +3,10 @@ const handler = require('../handlers/event')
 const router = express.Router()
 
 const EVENT_ROOT_PATH = '/'
-router.get(EVENT_ROOT_PATH, handler.getEvent)
+
+router.get(EVENT_ROOT_PATH + ":eventId", handler.getEvent)
+router.get(EVENT_ROOT_PATH, handler.getEvents)
+
 router.post(EVENT_ROOT_PATH, handler.postEvent)
 router.put(EVENT_ROOT_PATH, handler.putEvent)
 

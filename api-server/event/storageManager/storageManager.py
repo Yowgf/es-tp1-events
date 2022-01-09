@@ -29,5 +29,7 @@ class storageManager:
         return db.session.query(Event).filter_by(id=eventId).first()
     
     def getEventJSON(self, eventId):
-        return db.session.query(Event).filter_by(id=eventId).first().toJSON()
-
+        event = db.session.query(Event).filter_by(id=eventId).first()
+        if event != None:
+            event = event.toJSON()
+        return event

@@ -12,6 +12,15 @@ class Event {
             })
     }
 
+    async getEvents(req) {
+        return await this.apiServerClient
+            .getEvents(req)
+            .then(res => res)
+            .catch(e => {
+                throw e
+            })
+    }
+
     async postEvent(req) {
         return await this.apiServerClient
             .postEvent(req)

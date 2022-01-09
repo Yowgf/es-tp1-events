@@ -6,6 +6,8 @@ def getAllEvents(sm):
 
 def getEvent(sm, eventId):
     eventJSON = sm.getEventJSON(eventId)
+    if eventJSON == None:
+        return Response("", status=404)
     print(eventJSON, flush=True)
     return eventJSON
 

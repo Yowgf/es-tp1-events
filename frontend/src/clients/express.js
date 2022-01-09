@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const EXPRESS_CLIENT_TIMEOUT = 1000
+const EXPRESS_CLIENT_TIMEOUT = 1000 // Milliseconds
 
 class ExpressClient {
     constructor() {
@@ -30,12 +30,12 @@ class ExpressClient {
     }
 
     async getEvents(config) {
-        const url = "http://localhost:8000/event"
+        const url = "/event"
         return this.get(url, config)
     }
 
     async getEvent(eventId, config) {
-        const url = `http://localhost:8000/event/${eventId}`
+        const url = `/event/${eventId}`
         return this.get(url, config)
     }
 

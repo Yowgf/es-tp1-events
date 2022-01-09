@@ -28,16 +28,23 @@ const addEventMarkerMap = (latitude, longitude, map) => {
 
 }
 
+// TODO: keep a cache with a couple of event ids, so that the page doesn't need
+// to be reloaded often -aholmquist 2022-01-09
 const Details = () => {
     const { id } = useParams()
     console.log(id)
-
     const navigate = useNavigate()
+
     const previousEvent = () => {
-        navigate(`/event/${max(id - 1, 1)}`)
+        const previousId = id - 1
+        // Only reload page if necessary
+        if (previousId >= 1) {
+            navigate(`/event/${previousId}`)
+        }
     }
     const nextEvent = () => {
-        navigate(`/event/${Number(id) + 1}`)
+        const nextId = Number(id) + 1
+        navigate(`/event/${nextId}`)
     }
 
 
@@ -66,74 +73,67 @@ const Details = () => {
     return (
         <Fragment>
             <h1 id='title' style={{ textAlign: 'center' }}>Event's Information</h1>
-            <div className="event-detail-body" class="row event-detail-body">
+            <div className="event-detail-body row event-detail-body">
 
-                <div class="col-md-6">
-                    <div class="table-responsive">
-                        <table class="table table-user-information">
+                <div className="col-md-6">
+                    <div className="table-responsive">
+                        <table className="table table-user-information">
                             <tbody>
                                 <tr>
                                     <td>
                                         <strong>
-                                            <span class="glyphicon glyphicon-user  text-primary"></span>
-                                        Name
-                                    </strong>
+                                            <span className="glyphicon glyphicon-user  text-primary">Name</span>
+                                        </strong>
                                     </td>
-                                    <td class="text-primary" id="eventName"></td>
+                                    <td className="text-primary" id="eventName"></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <strong>
-                                            <span class="glyphicon glyphicon-calendar text-primary"></span>
-                                        Category
-                                    </strong>
+                                            <span className="glyphicon glyphicon-calendar text-primary">Category</span>
+                                        </strong>
                                     </td>
-                                    <td class="text-primary" id="eventCategory"></td>
+                                    <td className="text-primary" id="eventCategory"></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <strong>
-                                            <span class="glyphicon glyphicon-calendar text-primary"></span>
-                                        Created At
-                                    </strong>
+                                            <span className="glyphicon glyphicon-calendar text-primary">Created At</span>
+                                        </strong>
                                     </td>
-                                    <td class="text-primary" id="eventDate"></td>
+                                    <td className="text-primary" id="eventDate"></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <strong>
-                                            <span class="glyphicon glyphicon-calendar text-primary"></span>
-                                        User
-                                    </strong>
+                                            <span className="glyphicon glyphicon-calendar text-primary">User</span>
+                                        </strong>
                                     </td>
-                                    <td class="text-primary" id="eventUser"></td>
+                                    <td className="text-primary" id="eventUser"></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <strong>
-                                            <span class="glyphicon glyphicon-calendar text-primary"></span>
-                                        Latitude
-                                    </strong>
+                                            <span className="glyphicon glyphicon-calendar text-primary">Latitude</span>
+                                        </strong>
                                     </td>
-                                    <td class="text-primary" id="eventLatitude"></td>
+                                    <td className="text-primary" id="eventLatitude"></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <strong>
-                                            <span class="glyphicon glyphicon-calendar text-primary"></span>
-                                        Longitude
-                                    </strong>
+                                            <span className="glyphicon glyphicon-calendar text-primary">Longitude</span>
+                                        </strong>
                                     </td>
-                                    <td class="text-primary" id="eventLongitude"></td>
+                                    <td className="text-primary" id="eventLongitude"></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <strong>
-                                            <span class="glyphicon glyphicon-calendar text-primary"></span>
-                                        Description
-                                    </strong>
+                                            <span className="glyphicon glyphicon-calendar text-primary">Description</span>
+                                        </strong>
                                     </td>
-                                    <td class="text-primary" id="eventDescription"></td>
+                                    <td className="text-primary" id="eventDescription"></td>
                                 </tr>
 
                             </tbody>
@@ -147,7 +147,7 @@ const Details = () => {
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div className="col-md-6">
                     <strong>Location</strong>
                     <div id="mapContainer" className="map-container-details-page"></div>
                 </div>

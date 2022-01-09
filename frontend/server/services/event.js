@@ -13,6 +13,14 @@ class EventService {
         }
     }
 
+    async getEvents(req) {
+        try {
+            return await this.Event.getEvents(req)
+        } catch (e) {
+            throw e
+        }
+    }
+
     async postEvent(req) {
         try {
             return await this.Event.postEvent(req)
