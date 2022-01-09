@@ -7,6 +7,7 @@ bp = Blueprint("event", __name__, url_prefix="/event")
 
 @bp.route("/", methods=["GET", "POST"])
 def root():
+    app.logger.debug("Got resquest with method: {}".format(request.method))
     if request.method == "GET":
         return getAllEvents(app.sm)
     elif request.method == "POST":

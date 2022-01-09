@@ -1,7 +1,11 @@
 import os
+import logging
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+
+# TODO: the logging level should be a configuration parameter. -aholmquist 2022-01-09
+logging.basicConfig(level=logging.DEBUG)
 
 def create_app():
     app = Flask(__name__)

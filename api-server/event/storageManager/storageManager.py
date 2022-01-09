@@ -12,6 +12,7 @@ class storageManager:
     def getAllEventsJSON(self):
         return [e.toJSON() for e in db.session.query(Event).all()]
 
+    # TODO: we should validate the request data -aholmquist 2022-01-09
     def postEvent(self, req):
         newEvent = Event(
             req["name"], 
@@ -19,8 +20,8 @@ class storageManager:
             req["createdAt"], 
             req["latitude"], 
             req["longitude"], 
-            Category.query.filter_by(name=req["category"]).with_entities(Category.id).first()[0],
-            User.query.filter_by(name=req["user"]).with_entities(User.id).first()[0]
+            req["category"],
+            req["user"],
         )
         db.session.add(newEvent)
         db.session.commit()
