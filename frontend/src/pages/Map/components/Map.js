@@ -65,9 +65,7 @@ const Map = (props) => {
             newA.addEventListener('click', (e) => {
                 EventClick(event.id)
             });
-            newA.style.float = "right"
             newA.style.color = "blue"
-            newA.style.cursor = "pointer"
 
             new mapboxgl.Marker({
                 color: category2color[event.category]
@@ -118,8 +116,10 @@ const Map = (props) => {
 
     return (
         <Body>
+            <div style={{ height: "100%" }}>
             <div id="mapContainer" className="map-container"></div>
             <div class='map-overlay' id='legend'></div>
+            </div>
         </Body>
     )
 }
