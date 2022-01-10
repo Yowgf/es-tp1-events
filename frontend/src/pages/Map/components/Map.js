@@ -58,7 +58,7 @@ const Map = (props) => {
             const newA = document.createElement('a')
             newH3.innerText = event.name
             newP.innerText = event.description
-            newA.innerText = "Mais informações"
+            newA.innerText = "More information"
             newDiv.appendChild(newH3)
             newDiv.appendChild(newP)
             newDiv.appendChild(newA)
