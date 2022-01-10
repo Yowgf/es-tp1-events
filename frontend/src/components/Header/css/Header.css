@@ -1,7 +1,7 @@
 .header {
     width: 100%;
     height: 3em;
-    background: linear-gradient(10deg, white, steelblue, transparent);
+    background: #1e2224;
     margin-bottom: 20px;
 }
 
@@ -16,5 +16,9 @@
     align-self: center;
     text-decoration: none;
     font-size: larger;
-    color: blue;
+    color: wheat;
+}
+
+.header-link:hover {
+    color: #fdc356;
 }

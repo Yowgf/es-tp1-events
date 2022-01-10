@@ -81,59 +81,45 @@ const Details = () => {
                             <tbody>
                                 <tr>
                                     <td>
-                                        <strong>
-                                            <span className="glyphicon glyphicon-user  text-primary">Name</span>
-                                        </strong>
+                                        <span className="detail-title">Name</span>
                                     </td>
-                                    <td className="text-primary" id="eventName"></td>
+                                    <td className="detail-info" id="eventName"></td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <strong>
-                                            <span className="glyphicon glyphicon-calendar text-primary">Category</span>
-                                        </strong>
+                                        <span className="detail-title">Category</span>
                                     </td>
-                                    <td className="text-primary" id="eventCategory"></td>
+                                    <td className="detail-info" id="eventCategory"></td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <strong>
-                                            <span className="glyphicon glyphicon-calendar text-primary">Created At</span>
-                                        </strong>
+                                        <span className="detail-title">Created At</span>
                                     </td>
-                                    <td className="text-primary" id="eventDate"></td>
+                                    <td className="detail-info" id="eventDate"></td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <strong>
-                                            <span className="glyphicon glyphicon-calendar text-primary">User</span>
-                                        </strong>
+                                        <span className="detail-title">User</span>
                                     </td>
-                                    <td className="text-primary" id="eventUser"></td>
+                                    <td className="detail-info" id="eventUser"></td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <strong>
-                                            <span className="glyphicon glyphicon-calendar text-primary">Latitude</span>
-                                        </strong>
+                                        <span className="detail-title">Latitude</span>
                                     </td>
-                                    <td className="text-primary" id="eventLatitude"></td>
+                                    <td className="detail-info" id="eventLatitude"></td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <strong>
-                                            <span className="glyphicon glyphicon-calendar text-primary">Longitude</span>
-                                        </strong>
+                                        <span className="detail-title">Longitude</span>
                                     </td>
-                                    <td className="text-primary" id="eventLongitude"></td>
+                                    <td className="detail-info" id="eventLongitude"></td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <strong>
-                                            <span className="glyphicon glyphicon-calendar text-primary">Description</span>
-                                        </strong>
+                                        <span className="detail-title">Description</span>
                                     </td>
-                                    <td className="text-primary" id="eventDescription"></td>
+                                    <td className="detail-info" id="eventDescription"></td>
                                 </tr>
 
                             </tbody>

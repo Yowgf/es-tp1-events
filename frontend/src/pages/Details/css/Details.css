@@ -4,9 +4,7 @@
 }
 
 .mapboxgl-canvas-container {
-
     height: 500px;
-
 }
 
 .icones {
@@ -21,4 +19,12 @@
     flex-direction: column;
     width: 50%;
     margin: 40px 1% 0px 1%;
+}
+
+.detail-title {
+    font-weight: bolder;
+}
+
+.detail-info {
+    text-align: initial;
 }
